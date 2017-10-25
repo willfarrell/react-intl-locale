@@ -1,15 +1,23 @@
 import acceptedLanguages from 'acceptedlanguages';
 import acceptLanguage from 'accept-language';
 
-import { addLocaleData } from 'react-intl';
+import {addLocaleData} from 'react-intl';
 
-export let defaultLocale = 'en';
-export let locale = defaultLocale;
+import merge from 'lodash/merge';
 
+// locale
+let defaultLocale = 'en';
+let locale = defaultLocale;
 
 export const getLocale = () => {
+    return locale;
+};
+
+export const getUserLocale = () => {
     let savedLocale = window.localStorage.getItem('locale');
-    if (savedLocale === 'null') { savedLocale = null; }
+    if (savedLocale === 'null') {
+        savedLocale = null;
+    }
     const browserLocale = acceptLanguage.get(acceptedLanguages.accepted.join(','));
 
     return (savedLocale || browserLocale || defaultLocale);
@@ -17,7 +25,7 @@ export const getLocale = () => {
 
 export const setLocale = (newLocale) => {
     // set current language
-    locale = getLocale(newLocale);
+    locale = getUserLocale(newLocale);
 
     window.localStorage.setItem('locale', locale);
 
@@ -29,9 +37,9 @@ export const setLocale = (newLocale) => {
     return locale;
 };
 
-const initLocale = (primaryLocale, allowedLocales = []) => {
+const initLocale = (primaryLocale = defaultLocale, allowedLocales = []) => {
     defaultLocale = primaryLocale;
-    allowedLocales.push(defaultLocale);
+    allowedLocales.unshift(defaultLocale);
 
     // set accepted languages
     acceptLanguage.languages(allowedLocales);
@@ -40,3 +48,16 @@ const initLocale = (primaryLocale, allowedLocales = []) => {
 };
 
 export default initLocale;
+
+// messages
+
+// Uses local previously set
+// ${locale} inside the str will be replaced
+export const getLocaleMessages = (files = []) => {
+    return merge(
+        {},
+        ...files.map((file) => {
+            return require(file.replace('${locale}', locale));
+        })
+    );
+};

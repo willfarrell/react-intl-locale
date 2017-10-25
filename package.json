@@ -1,9 +1,10 @@
 {
   "name": "react-intl-locale",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "dynamically load locale as needed for react-intl",
   "main": "index.js",
   "scripts": {
+    "lint": "",
     "test": ""
   },
   "author": "will Farrell",
@@ -11,6 +12,7 @@
   "dependencies": {
     "accept-language": "^3.0.18",
     "acceptedlanguages": "0.0.2",
+    "merge": "^1.2.0",
     "react-intl": "^2.4.0"
   },
   "devDependencies": {}
