@@ -52,16 +52,3 @@ const initLocale = (primaryLocale = defaultLocale, allowedLocales = []) => {
 };
 
 export default initLocale;
-
-// messages
-
-// Uses local previously set
-// ${locale} inside the str will be replaced
-export const getLocaleMessages = (files = []) => {
-    return merge(
-        {},
-        ...files.map((file) => {
-            return require(file.replace('${locale}', locale));
-        })
-    );
-};

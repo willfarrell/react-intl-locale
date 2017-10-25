@@ -14,7 +14,7 @@ import initLocale, { defaultLocale, getLocale, setLocale, getLocaleMessages } fr
 initLocale('en-CA', ['fr-CA']);
 ...
 const locale = getLocale();
-const messages = getLocaleMessages(['./${locale}.header.json','./${locale}.footer.json']);
+const messages = getLocaleMessages(['./{locale}.header.json','./{locale}.footer.json']);
 ...
 <IntlProvider
     locale={locale}
@@ -36,6 +36,3 @@ Returns the currently selected locale
 
 ### setLocale
 Overrides the the current locale, if allowed based in the init.
-
-### getLocaleMessages
-Returns key value pairs from multiple files. Note; `${locale}` can be used inside the str and be replace w/ the currentLocale.
