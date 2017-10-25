@@ -9,6 +9,10 @@ import merge from 'lodash/merge';
 let defaultLocale = 'en';
 let locale = defaultLocale;
 
+export const getDefaultLocale = () => {
+    return defaultLocale;
+};
+
 export const getLocale = () => {
     return locale;
 };

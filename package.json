@@ -1,6 +1,6 @@
 {
   "name": "react-intl-locale",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "dynamically load locale as needed for react-intl",
   "main": "index.js",
   "scripts": {
