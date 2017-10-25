@@ -12,7 +12,6 @@
   "dependencies": {
     "accept-language": "^3.0.18",
     "acceptedlanguages": "0.0.2",
-    "merge": "^1.2.0",
     "react-intl": "^2.4.0"
   },
   "devDependencies": {}
