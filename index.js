@@ -3,8 +3,6 @@ import acceptLanguage from 'accept-language';
 
 import {addLocaleData} from 'react-intl';
 
-import merge from 'lodash/merge';
-
 // locale
 let defaultLocale = 'en';
 let locale = defaultLocale;
