@@ -15,6 +15,30 @@ export const getLocale = () => {
     return locale;
 };
 
+export const getLocaleMessages = (locale, paths) => {
+    if (!locale) return Promise.resolve({});
+    const qarr = [];
+    paths.forEach((path) => qarr.push(import(path.replace('{locale}', locale))
+        .catch((err) => {
+            console.error(err);
+            return {};
+        }))
+    );
+    return Promise.all(qarr)
+        .then((contents) => {
+            console.log(contents);
+            return contents.reduce((result, currentObject) => {
+                for (let key in currentObject) {
+                    if (!currentObject.hasOwnProperty(key)) {
+                        continue;
+                    }
+                    result[key] = currentObject[key];
+                }
+                return result;
+            }, {});
+        });
+};
+
 export const getUserLocale = () => {
     let savedLocale = window.localStorage.getItem('locale');
     if (savedLocale === 'null') {

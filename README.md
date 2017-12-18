@@ -36,3 +36,8 @@ Returns the currently selected locale
 
 ### setLocale
 Overrides the the current locale, if allowed based in the init.
+
+### getLocaleMessages
+- locale (String): Current locale
+- paths (String[]): Array to paths to load for locale. Has locale replacement built in `{locale}`. Path names are relative,
+ thus is using CRA you build files will be in `statis/js/`, so `../../` may need to be prefixed.
