@@ -17,16 +17,19 @@ export const getLocale = () => {
 
 export const getLocaleMessages = (locale, paths) => {
     if (!locale) return Promise.resolve({});
+    const language = locale.substr(0,2);
     const qarr = [];
-    paths.forEach((path) => qarr.push(import(path.replace('{locale}', locale))
-        .catch((err) => {
-            console.error(err);
-            return {};
-        }))
-    );
+    paths.forEach((path) => {
+        path = path.replace('{locale}', locale).replace('{language}', language);
+        qarr.push(fetch(path)
+            .then((res) => res.json())
+            .catch((err) => {
+                console.error(err);
+                return {};
+            }));
+    });
     return Promise.all(qarr)
         .then((contents) => {
-            console.log(contents);
             return contents.reduce((result, currentObject) => {
                 for (let key in currentObject) {
                     if (!currentObject.hasOwnProperty(key)) {

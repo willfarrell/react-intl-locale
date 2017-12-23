@@ -27,7 +27,7 @@ const messages = getLocaleMessages(['./{locale}.header.json','./{locale}.footer.
 ## Docs
 ### initLocale
 - defaultLocale (String): Set the default locale to use in the app. default: `en`.
-- allowedLocales (String[]): List of locales supported inteh app, excluding the defaultLocale, defaultLocale will be added to it.
+- allowedLocales (String[]): List of locales supported in the app, excluding the defaultLocale, defaultLocale will be added to it.
 
 Using the browsers locale and the locales initialized the best match will be returned for use.
 
@@ -39,5 +39,4 @@ Overrides the the current locale, if allowed based in the init.
 
 ### getLocaleMessages
 - locale (String): Current locale
-- paths (String[]): Array to paths to load for locale. Has locale replacement built in `{locale}`. Path names are relative,
- thus is using CRA you build files will be in `statis/js/`, so `../../` may need to be prefixed.
+- paths (String[]): Array to paths to load for locale. Has locale replacement built in `{locale}` and `{language}`. Path names are relative the root of the build folder.
